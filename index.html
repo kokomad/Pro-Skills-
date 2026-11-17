@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skills Hub — مركز مهارات Claude Code</title>
+<meta name="description" content="اختر مهارات Claude Code وولّد أوامر التثبيت وقالب CLAUDE.md لمشروعك.">
+<meta name="theme-color" content="#0e0b09">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0b09;--bg2:#17120e;--card:rgba(255,255,255,.05);--bd:rgba(255,255,255,.1);--tx:#f6ede4;--mut:#a89c91;--ac:#e07a4f;--ac2:#f0b27a;--code:#080605;--ok:#6fcf97;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+:root[data-theme="light"]{--bg:#f7f2ec;--bg2:#fff;--card:#fff;--bd:#e6dccf;--tx:#1d1713;--mut:#6f645a;--code:#1d1713}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:radial-gradient(1000px 500px at 80% -10%,rgba(224,122,79,.18),transparent),var(--bg);color:var(--tx);font-family:Cairo,system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;line-height:1.65;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:760px;margin:auto;padding:0 16px}
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top,0px)}
+header .wrap{display:flex;align-items:center;gap:10px;height:56px}
+.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--ac2),var(--ac));display:grid;place-items:center;color:#0e0b09;font-weight:800}
+header b{flex:1;font-size:17px}
+.ib{width:38px;height:38px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:17px;cursor:pointer}
+.hero{padding:26px 0 8px}
+.hero h1{font-size:30px;line-height:1.25;margin:0 0 8px;font-weight:800;background:linear-gradient(120deg,var(--ac2),var(--ac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut);margin:0 0 14px}
+.stats{display:flex;gap:8px}
+.stat{flex:1;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;text-align:center}
+.stat b{display:block;font-size:20px;color:var(--ac2)}.stat span{font-size:12px;color:var(--mut)}
+h2{font-size:18px;margin:26px 0 10px;font-weight:800}
+.search{width:100%;padding:13px 16px;border-radius:14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;outline:none}
+.search:focus{border-color:var(--ac)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.chip{flex:none;padding:7px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-size:13px;cursor:pointer}
+.chip.on{background:linear-gradient(120deg,var(--ac2),var(--ac));color:#0e0b09;border-color:transparent;font-weight:700}
+.presets{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.preset{padding:12px;border-radius:14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;text-align:right;cursor:pointer}
+.preset b{display:block;font-size:14px}.preset span{font-size:12px;color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px;margin-bottom:12px;transition:.2s}
+.card.sel{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset,0 8px 30px rgba(224,122,79,.12)}
+.top{display:flex;align-items:center;gap:10px}
+.ico{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--ac2),var(--ac));display:grid;place-items:center;font-size:22px;flex:none}
+.meta{flex:1;min-width:0}
+.nm{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;direction:ltr;text-align:right;word-break:break-all}
+.rl{color:var(--ac2);font-size:13px;font-weight:600}
+.fav{background:none;border:0;font-size:22px;cursor:pointer;color:var(--mut)}.fav.on{color:#f2c14e}
+.ds{color:var(--mut);font-size:13.5px;margin:8px 0}
+.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{font-size:11px;padding:2px 9px;border-radius:99px;background:rgba(224,122,79,.14);color:var(--ac2)}
+details{margin-top:8px}summary{cursor:pointer;font-size:13px;color:var(--ac2)}
+pre{background:var(--code);color:#f4e9df;border-radius:12px;padding:12px;overflow-x:auto;direction:ltr;text-align:left;font-size:12.5px;margin:8px 0 0;white-space:pre;border:1px solid var(--bd)}
+.acts{display:flex;gap:8px;margin-top:10px}
+.btn{flex:1;padding:10px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-weight:600;font-size:14px;cursor:pointer;text-align:center;text-decoration:none}
+.btn.p{background:linear-gradient(120deg,var(--ac2),var(--ac));color:#0e0b09;border-color:transparent}
+.fld{display:grid;gap:8px;margin-bottom:10px}
+.fld input,.fld select,.fld textarea{padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;width:100%}
+.fld option{color:#111}
+.steps{counter-reset:s;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding:8px 44px 8px 0;color:var(--mut);font-size:14px}
+.steps li::before{content:counter(s);position:absolute;right:0;top:6px;width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--ac);color:var(--ac2);display:grid;place-items:center;font-weight:700}
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--bg2) 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--bd)}
+.bar .wrap{display:flex;gap:10px;align-items:center;padding:0}
+.bar span{flex:1;font-size:14px}.bar .btn{flex:none}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:var(--ok);color:#06220f;padding:9px 18px;border-radius:99px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.empty{text-align:center;color:var(--mut);padding:30px}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:26px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="logo">✓</div><b>Skills Hub</b>
+<button class="ib" id="inst" hidden title="تثبيت التطبيق">⬇</button>
+<button class="ib" id="theme" title="الوضع">🌓</button></div></header>
+
+<main class="wrap">
+<section class="hero">
+<h1>جهّز مشروعك بأقوى مهارات Claude Code</h1>
+<p>اختر المهارات، ولّد أوامر التثبيت وقالب CLAUDE.md، وابدأ مشروعك في دقائق.</p>
+<div class="stats"><div class="stat"><b id="sTot">0</b><span>مهارة</span></div><div class="stat"><b id="sSel">0</b><span>محددة</span></div><div class="stat"><b id="sFav">0</b><span>مفضلة</span></div></div>
+</section>
+
+<h2>⚡ باقات جاهزة</h2>
+<div class="presets" id="presets"></div>
+
+<h2>🧩 المهارات</h2>
+<input class="search" id="q" type="search" placeholder="ابحث عن مهارة…">
+<div class="chips" id="chips"></div>
+<div id="list"></div>
+
+<h2 id="gen">🚀 التوليد</h2>
+<div class="card">
+<div class="fld">
+<input id="pn" placeholder="اسم المشروع" value="my-project">
+<select id="pt"><option>تطبيق ويب</option><option>تطبيق جوال</option><option>موقع تعريفي</option><option>API / خلفية</option><option>أداة سطر أوامر</option></select>
+<textarea id="pd" rows="2" placeholder="وصف مختصر للمشروع"></textarea>
+</div>
+<b>① داخل Claude Code</b><pre id="o1"></pre>
+<div class="acts"><button class="btn" data-copy="o1">نسخ</button></div>
+<b style="display:block;margin-top:14px">② في الطرفية</b><pre id="o2"></pre>
+<div class="acts"><button class="btn" data-copy="o2">نسخ</button></div>
+<b style="display:block;margin-top:14px">③ قالب CLAUDE.md</b><pre id="o3"></pre>
+<div class="acts"><button class="btn" data-copy="o3">نسخ</button><button class="btn p" id="dl">تحميل الملفات</button></div>
+</div>
+
+<h2>📱 طريقة الاستخدام</h2>
+<ol class="steps">
+<li>حدّد المهارات أو اختر باقة جاهزة.</li>
+<li>افتح Claude Code على الكمبيوتر أو جلسة بعيدة من الجوال.</li>
+<li>الصق أوامر الخطوة ① ثم ② ثم ضع CLAUDE.md في جذر المشروع.</li>
+<li>أعد تشغيل Claude Code وابدأ بطلب المهارة بالاسم.</li>
+</ol>
+<footer>أكّد الأوامر من الصفحات الرسمية لكل مهارة، فقد تتغير. · Skills Hub</footer>
+</main>
+
+<div class="bar"><div class="wrap"><span id="bt">لم تحدد شيئًا</span><button class="btn" id="clr">مسح</button><a class="btn p" href="#gen">توليد</a></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+var SKILLS=[
+{id:'superpowers',cat:'تخطيط',ico:'🗺️',role:'بيخطط',d:'منهجية كاملة: تخطيط، تقسيم مهام، اختبارات ومراجعة قبل الكود.',c:[['cc','/plugin marketplace add obra/superpowers-marketplace'],['cc','/plugin install superpowers@superpowers-marketplace']],u:'https://github.com/obra/superpowers'},
+{id:'feature-dev',cat:'تخطيط',ico:'🧭',role:'تطوير ميزات',d:'مسار منظم لتطوير ميزة: استكشاف، تصميم معماري، تنفيذ، مراجعة.',c:[['cc','/plugin install feature-dev@claude-plugins-official']]},
+{id:'claude-mem',cat:'ذاكرة',ico:'🧠',role:'بيفتكر',d:'ذاكرة دائمة تحفظ سياق عملك وقراراتك بين الجلسات.',c:[['cc','/plugin marketplace add thedotmack/claude-mem'],['cc','/plugin install claude-mem']],u:'https://github.com/thedotmack/claude-mem'},
+{id:'context7',cat:'ذاكرة',ico:'📚',role:'توثيق محدّث',d:'يجلب أحدث توثيق للمكتبات لتفادي الكود القديم.',c:[['sh','claude mcp add context7 -- npx -y @upstash/context7-mcp']]},
+{id:'frontend-design',cat:'تصميم',ico:'🧭',role:'يحدد الستايل',d:'واجهات مميزة بهوية واضحة بدل الشكل التقليدي.',c:[['cc','/plugin install frontend-design@claude-plugins-official']]},
+{id:'impeccable',cat:'تصميم',ico:'✨',role:'بيلمّع',d:'تلميع التصميم: مسافات، ألوان، حركة وتفاصيل دقيقة.',c:[['sh','npx skills add pbakaus/impeccable']],u:'https://github.com/pbakaus/impeccable'},
+{id:'code-review',cat:'جودة',ico:'🔍',role:'مراجعة كود',d:'مراجعة الـ Pull Requests واكتشاف الأخطاء بوكلاء متعددين.',c:[['cc','/plugin install code-review@claude-plugins-official']]},
+{id:'playwright',cat:'جودة',ico:'🧪',role:'اختبار المتصفح',d:'يشغّل المتصفح لاختبار واجهتك فعليًا وأخذ لقطات.',c:[['sh','claude mcp add playwright -- npx @playwright/mcp@latest']]},
+{id:'commit-commands',cat:'أدوات',ico:'📝',role:'Git سريع',d:'أوامر للـ commit والـ push وفتح PR بسطر واحد.',c:[['cc','/plugin install commit-commands@claude-plugins-official']]},
+{id:'document-skills',cat:'أدوات',ico:'📄',role:'ملفات Office',d:'إنشاء وتحرير Word وExcel وPowerPoint وPDF.',c:[['cc','/plugin marketplace add anthropics/skills'],['cc','/plugin install document-skills@anthropic-agent-skills']],u:'https://github.com/anthropics/skills'},
+{id:'skill-creator',cat:'أدوات',ico:'🛠️',role:'يصنع مهارات',d:'أنشئ مهاراتك الخاصة واختبرها وحسّنها.',c:[['cc','/plugin marketplace add anthropics/skills'],['cc','/plugin install example-skills@anthropic-agent-skills']],u:'https://github.com/anthropics/skills'},
+{id:'find-skills',cat:'أدوات',ico:'🔎',role:'بيدوّر',d:'يبحث عن مهارات جديدة ويثبتها لك.',c:[['sh','npx skills add vercel-labs/skills --skill find-skills']]}
+];
+var PRE=[
+{n:'🌐 تطبيق ويب',s:'superpowers frontend-design impeccable context7 playwright'},
+{n:'📱 تطبيق جوال',s:'superpowers claude-mem frontend-design impeccable code-review'},
+{n:'🌱 للمبتدئين',s:'find-skills superpowers frontend-design'},
+{n:'👑 الكل',s:SKILLS.map(function(x){return x.id}).join(' ')}
+];
+var $=function(i){return document.getElementById(i)};
+var sel={},fav={},cat='الكل',term='';
+function ld(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+sel=ld('sel',{});fav=ld('fav',{});
+var th=ld('th','dark');document.documentElement.dataset.theme=th;
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function toast(t){var e=$('toast');e.textContent=t;e.classList.add('show');setTimeout(function(){e.classList.remove('show')},1400)}
+function chosen(){return SKILLS.filter(function(s){return sel[s.id]})}
+function draw(){
+  var cats=['الكل','⭐ المفضلة'].concat(SKILLS.map(function(s){return s.cat}).filter(function(v,i,a){return a.indexOf(v)===i}));
+  $('chips').innerHTML=cats.map(function(c){return '<button class="chip'+(c===cat?' on':'')+'" data-cat="'+c+'">'+c+'</button>'}).join('');
+  var l=SKILLS.filter(function(s){
+    if(cat==='⭐ المفضلة'&&!fav[s.id])return false;
+    if(cat!=='الكل'&&cat!=='⭐ المفضلة'&&s.cat!==cat)return false;
+    return !term||(s.id+s.role+s.d+s.cat).toLowerCase().indexOf(term)>-1});
+  $('list').innerHTML=l.length?l.map(function(s){
+    return '<div class="card'+(sel[s.id]?' sel':'')+'"><div class="top"><div class="ico">'+s.ico+'</div><div class="meta"><div class="nm">'+s.id+'</div><div class="rl">'+s.role+'</div></div><button class="fav'+(fav[s.id]?' on':'')+'" data-fav="'+s.id+'">'+(fav[s.id]?'★':'☆')+'</button></div>'
+    +'<p class="ds">'+s.d+'</p><div class="tags"><span class="tag">'+s.cat+'</span></div>'
+    +'<details><summary>أوامر التثبيت</summary><pre>'+esc(s.c.map(function(x){return x[1]}).join('\n'))+'</pre></details>'
+    +'<div class="acts"><button class="btn'+(sel[s.id]?'':' p')+'" data-sel="'+s.id+'">'+(sel[s.id]?'✓ محددة':'+ إضافة')+'</button><button class="btn" data-one="'+s.id+'">نسخ</button>'+(s.u?'<a class="btn" target="_blank" rel="noopener" href="'+s.u+'">المصدر</a>':'')+'</div></div>'}).join(''):'<div class="empty">لا نتائج</div>';
+  var n=chosen().length;
+  $('sTot').textContent=SKILLS.length;$('sSel').textContent=n;$('sFav').textContent=Object.keys(fav).filter(function(k){return fav[k]}).length;
+  $('bt').textContent=n?('محدد: '+n+' مهارة'):'لم تحدد شيئًا';
+  gen();
+}
+function gen(){
+  var cc=[],sh=[];
+  chosen().forEach(function(s){s.c.forEach(function(x){var a=x[0]==='cc'?cc:sh;if(a.indexOf(x[1])<0)a.push(x[1])})});
+  $('o1').textContent=cc.join('\n')||'# لا شيء';
+  $('o2').textContent=sh.join('\n')||'# لا شيء';
+  $('o3').textContent=md();
+}
+function md(){
+  var n=chosen().map(function(s){return '- '+s.id+' — '+s.role}).join('\n')||'- (لا شيء)';
+  return '# '+($('pn').value||'project')+'\n\n## نبذة\n'+($('pd').value||'...')+'\n\n## النوع\n'+$('pt').value+'\n\n## المهارات المفعّلة\n'+n+'\n\n## سير العمل\n1. خطّط أولًا قبل كتابة أي كود.\n2. حدّد هوية التصميم قبل بناء الواجهة.\n3. نفّذ على مراحل صغيرة مع اختبار كل مرحلة.\n4. لمّع التفاصيل وراجع الكود قبل التسليم.\n\n## قواعد\n- اكتب كودًا نظيفًا وبسيطًا.\n- لا تضف مكتبات دون سبب واضح.\n- اشرح أي قرار معماري مهم.\n';
+}
+function copy(t){
+  var ok=function(){toast('تم النسخ ✓')};
+  try{navigator.clipboard.writeText(t).then(ok,function(){fb(t);ok()})}catch(e){fb(t);ok()}
+}
+function fb(t){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}
+function dlf(name,text){var b=new Blob([text],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},500)}
+$('presets').innerHTML=PRE.map(function(p,i){return '<button class="preset" data-pre="'+i+'"><b>'+p.n+'</b><span>'+p.s.split(' ').length+' مهارات</span></button>'}).join('');
+document.addEventListener('click',function(e){
+  var t=e.target.closest('button,a');if(!t)return;var d=t.dataset;
+  if(d.sel){sel[d.sel]=!sel[d.sel];sv('sel',sel);draw()}
+  else if(d.fav){fav[d.fav]=!fav[d.fav];sv('fav',fav);draw()}
+  else if(d.cat){cat=d.cat;draw()}
+  else if(d.pre){sel={};PRE[d.pre].s.split(' ').forEach(function(i){sel[i]=true});sv('sel',sel);draw();toast('تم تطبيق الباقة')}
+  else if(d.one){var s=SKILLS.filter(function(x){return x.id===d.one})[0];copy(s.c.map(function(x){return x[1]}).join('\n'))}
+  else if(d.copy){copy($(d.copy).textContent)}
+  else if(t.id==='clr'){sel={};sv('sel',sel);draw()}
+  else if(t.id==='theme'){th=th==='dark'?'light':'dark';document.documentElement.dataset.theme=th;sv('th',th)}
+  else if(t.id==='dl'){dlf('install-claude-skills.txt','# داخل Claude Code\n'+$('o1').textContent+'\n\n# في الطرفية\n'+$('o2').textContent+'\n');dlf('CLAUDE.md',md())}
+});
+$('q').addEventListener('input',function(e){term=e.target.value.trim().toLowerCase();draw()});
+['pn','pt','pd'].forEach(function(i){$(i).addEventListener('input',gen)});
+var dp;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;$('inst').hidden=false});
+$('inst').addEventListener('click',function(){if(dp){dp.prompt();dp=null;$('inst').hidden=true}});
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){navigator.serviceWorker.register('sw.js').catch(function(){})}
+draw();
+</script>
+</body>
+</html>
